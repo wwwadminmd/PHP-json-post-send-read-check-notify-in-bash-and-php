@@ -6,7 +6,7 @@ $url = 'http://localhost/backup/read.php';
 $ch = curl_init($url);
 
 //The JSON data.
-$jsonData = 'KAMAZ OK';
+$jsonData = 'SERVER 1 OK';
 
 //Encode the array into JSON.
 $jsonDataEncoded = json_encode($jsonData);
