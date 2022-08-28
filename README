@@ -1,0 +1,39 @@
+Welcome to the PHP-json-post-send-read-check-notify-in-bash-and-php wiki!
+
+ -Project Scope: To send some text data from diferent servers to one server that will parse the requests and notify via email with no additional 
+  programs. 
+ -Project in production scope: I have multiple linux servers that make backups every day and notify me on email, now I have too many servers to monitor 
+  and I decide to make a "backup monitoring and notification of multiple servers" by make every server at the end of backup process to send JSON POST 
+  Request to specified server that will check all responses once per day and notify me who is Success and who is Fail. In that way I will check only one 
+  email to see Backup jobs status of every server.
+
+Sources:
+https://thisinterestsme.com/sending-json-via-post-php
+https://stackoverflow.com/questions/7172784/how-do-i-post-json-data-with-curl
+https://www.codehref.com/php-save-post-data-to-file
+
+What is need for this to work:
+
+1. Debian/Unbuntu (Other not tested, but should work), PHP 5 (Other not tested, but should work).
+2. Upload json-read.php script to root of web server folder that will have the "CHECKER ROLE" (Ex.: /var/www/backup). When some server send Json Post 
+   request, this php script will write the Data to a file called: result_*.txt.
+3. On servers that you need to send Json Post PHP Request we need to upload and then run the json-send.php or json-send.sh. You can choice Bash or PHP 
+   script.
+4. Script called check.sh will check all the result_*.txt in directory for a Keyword - SERVER 1 OK (You can change the keyword at start of the script).
+5. To secure your folder on server where read.php is situated, need to deny indexing of root web directory to do so, open bash terminal and do:
+     cd /etc/apache2/
+     nano apache2.conf or httpd.conf
+     Find and edit /var/www section in apache2.conf like this:
+   #
+   <Directory /var/www>
+     Options -Indexes
+     AllowOverride All
+     Order allow,deny
+     Allow from all
+   </Directory>
+   #
+   Save and Close apache2.conf
+   service apache2 restart
+
+6. To avoid reading of script by others, you can put check.sh in another directory then /var/www and indicate path to read.php 
+   ex:/var/www/server.admin.md/backup/
