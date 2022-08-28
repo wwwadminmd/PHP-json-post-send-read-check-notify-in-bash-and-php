@@ -1,8 +1,8 @@
 #!/bin/bash
 date=$(date)
 dir='/var/www/server.admin.md/backup/'
-srv1='SA'
-srv2='KAMAZ'
+srv1='SERVER 1'
+srv2='SERVER 2'
 
 ###
 function srv1 (){
@@ -29,5 +29,5 @@ fi
 srv1
 srv2
 #
-cat "$dir"logs.txt # | mail -e oleg.buian@gmail.comcat logs.txt
+cat "$dir"logs.txt # | mail -e admin@admin.md - need to edit this line
 rm -fr "$dir"results_* "$dir"logs*
