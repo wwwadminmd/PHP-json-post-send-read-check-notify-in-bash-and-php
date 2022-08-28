@@ -4,7 +4,7 @@
 
 date=$(date)
 dir='/var/www/server.admin.md/backup/'
-srv1='SERVER 1'
+srv1='SERVER 1' # if you change it here, need to change at json-send.sh/.php too 
 srv2='SERVER 2'
 
 ###
