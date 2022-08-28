@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Put this script in crontab to check when you want
+
 date=$(date)
 dir='/var/www/server.admin.md/backup/'
 srv1='SERVER 1'
